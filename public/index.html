@@ -1,0 +1,1015 @@
+
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b5260">
+<title>SAFE NET 4A | Trợ lý an toàn số</title>
+<meta name="description" content="SAFE NET 4A - Không gian nhận diện, phân tích và tìm hướng hỗ trợ an toàn trên không gian mạng.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --ink:#17343a;
+  --muted:#647b7e;
+  --teal:#087e82;
+  --teal2:#07565f;
+  --mint:#e9f7f3;
+  --blue:#eef5ff;
+  --paper:#f5faf8;
+  --line:#dce9e6;
+  --white:#fff;
+  --shadow:0 16px 42px rgba(18,69,72,.09);
+  --user:#e5f1ff;
+  --assistant:#fff;
+  --danger:#fff2ef;
+}
+
+* {box-sizing:border-box}
+html {scroll-behavior:smooth}
+
+body {
+  margin:0;
+  background:linear-gradient(145deg,#effaf6 0%,#f3f7ff 55%,#fff9f1 100%);
+  color:var(--ink);
+  font-family:"Be Vietnam Pro",system-ui,sans-serif;
+  line-height:1.55;
+}
+
+button,textarea {font:inherit}
+button {cursor:pointer}
+
+.topbar {
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:#ffffffed;
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+
+.nav {
+  max-width:1180px;
+  margin:auto;
+  padding:12px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.brand {display:flex;align-items:center;gap:11px}
+
+.logo {
+  width:43px;
+  height:43px;
+  border-radius:15px;
+  background:linear-gradient(135deg,#087e82,#4d9bd1);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:22px;
+  box-shadow:0 8px 20px #087e8230;
+}
+
+.brand strong {display:block;font-size:15px;letter-spacing:.04em}
+.brand small {display:block;color:var(--muted);font-size:10px}
+.nav-actions {display:flex;gap:8px;flex-wrap:wrap}
+
+.btn {
+  border:0;
+  border-radius:12px;
+  padding:10px 14px;
+  font-size:12px;
+  font-weight:750;
+  transition:.18s;
+}
+
+.btn:hover {transform:translateY(-1px)}
+.btn-primary {
+  background:linear-gradient(120deg,#087e82,#176b91);
+  color:#fff;
+  box-shadow:0 8px 18px #087e8228;
+}
+.btn-soft {
+  background:#edf6f4;
+  color:var(--teal2);
+  border:1px solid #d4e9e4;
+}
+.btn-quiet {
+  background:#fff;
+  color:var(--muted);
+  border:1px solid var(--line);
+}
+
+main {
+  max-width:1180px;
+  margin:0 auto;
+  padding:26px 22px 56px;
+}
+
+.hero {
+  display:grid;
+  grid-template-columns:1.35fr .65fr;
+  gap:17px;
+  margin:10px 0 20px;
+}
+
+.hero-main,.hero-side,.chat-shell,.side-card,.resource {
+  background:#ffffffeb;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+}
+
+.hero-main {
+  padding:27px 30px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero-main:after {
+  content:"4A";
+  position:absolute;
+  right:12px;
+  bottom:-52px;
+  font-size:180px;
+  font-weight:800;
+  color:#087e8209;
+  pointer-events:none;
+}
+
+.eyebrow {
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.15em;
+  color:var(--teal);
+  text-transform:uppercase;
+}
+
+h1 {
+  font-size:clamp(27px,4vw,43px);
+  line-height:1.14;
+  margin:10px 0;
+  letter-spacing:-.04em;
+}
+
+.hero-main p {
+  max-width:700px;
+  color:var(--muted);
+  font-size:13px;
+  margin:0;
+}
+
+.hero-side {
+  padding:22px;
+  background:linear-gradient(155deg,#e7f7f2,#eff5ff);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.hero-side h3 {margin:0 0 6px;font-size:16px}
+.hero-side p {font-size:11px;color:var(--muted);margin:0 0 12px}
+
+.pillars {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+
+.pillar {
+  background:#ffffffc9;
+  border:1px solid #d9e9e8;
+  border-radius:12px;
+  padding:9px 5px;
+  text-align:center;
+}
+
+.pillar b {display:block;color:var(--teal);font-size:17px}
+.pillar span {font-size:9px;color:var(--muted)}
+
+.layout {
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 275px;
+  gap:17px;
+  align-items:start;
+}
+
+.chat-shell {overflow:hidden;min-width:0}
+
+.chat-head {
+  padding:16px 19px;
+  border-bottom:1px solid var(--line);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  background:#ffffffd9;
+}
+
+.chat-title {display:flex;align-items:center;gap:10px}
+
+.bot-avatar {
+  width:37px;
+  height:37px;
+  border-radius:13px;
+  background:var(--mint);
+  display:grid;
+  place-items:center;
+  font-size:19px;
+}
+
+.chat-title strong {display:block;font-size:13px}
+.chat-title small {display:block;color:var(--muted);font-size:10px}
+
+.online {
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  color:#16805d;
+  font-size:10px;
+  font-weight:700;
+}
+
+.online:before {
+  content:"";
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#20b47a;
+}
+
+.messages {
+  height:min(59vh,610px);
+  min-height:390px;
+  overflow-y:auto;
+  padding:19px;
+  background:linear-gradient(180deg,#f8fcfb,#f5f8ff);
+}
+
+.welcome {
+  max-width:650px;
+  margin:8px auto 20px;
+  text-align:center;
+}
+
+.welcome-mark {
+  width:58px;
+  height:58px;
+  border-radius:20px;
+  background:linear-gradient(135deg,#dff4ed,#e4efff);
+  display:grid;
+  place-items:center;
+  font-size:27px;
+  margin:0 auto 12px;
+}
+
+.welcome h2 {font-size:21px;margin:0 0 7px}
+.welcome p {
+  font-size:12px;
+  color:var(--muted);
+  margin:0 auto;
+  max-width:520px;
+}
+
+.suggestions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  justify-content:center;
+  margin:17px auto 0;
+  max-width:650px;
+}
+
+.suggestion {
+  border:1px solid #d5e5e2;
+  background:#fff;
+  color:#456267;
+  border-radius:999px;
+  padding:8px 11px;
+  font-size:10px;
+}
+
+.suggestion:hover {
+  background:var(--mint);
+  border-color:#85c6b9;
+  color:var(--teal2);
+}
+
+.msg-row {
+  display:flex;
+  margin:13px 0;
+  gap:8px;
+  align-items:flex-end;
+}
+
+.msg-row.user {justify-content:flex-end}
+
+.msg-avatar {
+  width:27px;
+  height:27px;
+  flex:0 0 27px;
+  border-radius:10px;
+  background:#e2f3ed;
+  display:grid;
+  place-items:center;
+  font-size:13px;
+}
+
+.bubble {
+  max-width:min(82%,680px);
+  padding:12px 14px;
+  border-radius:17px;
+  background:var(--assistant);
+  border:1px solid var(--line);
+  box-shadow:0 3px 10px #17343a08;
+  font-size:12px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.user .bubble {
+  background:var(--user);
+  border-color:#d2e4fa;
+  border-bottom-right-radius:5px;
+}
+
+.assistant .bubble {border-bottom-left-radius:5px}
+
+.msg-time {
+  font-size:9px;
+  color:#8aa0a2;
+  margin:4px 3px 0;
+}
+
+.typing {
+  display:inline-flex;
+  gap:4px;
+  align-items:center;
+  padding:13px 15px;
+}
+
+.typing i {
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:#80aaa4;
+  animation:bounce 1s infinite;
+}
+
+.typing i:nth-child(2) {animation-delay:.15s}
+.typing i:nth-child(3) {animation-delay:.3s}
+
+@keyframes bounce {
+  0%,60%,100% {transform:translateY(0);opacity:.55}
+  30% {transform:translateY(-4px);opacity:1}
+}
+
+.composer {
+  border-top:1px solid var(--line);
+  padding:13px 15px 11px;
+  background:#fff;
+}
+
+.composer-wrap {
+  display:flex;
+  align-items:flex-end;
+  gap:9px;
+  border:1px solid #cddfdd;
+  background:#fbfefd;
+  border-radius:16px;
+  padding:8px 8px 8px 13px;
+}
+
+.composer-wrap:focus-within {
+  border-color:var(--teal);
+  box-shadow:0 0 0 4px #087e8215;
+}
+
+#messageInput {
+  width:100%;
+  border:0;
+  outline:0;
+  resize:none;
+  min-height:38px;
+  max-height:130px;
+  background:transparent;
+  color:var(--ink);
+  font-size:12px;
+  padding:8px 0;
+}
+
+#messageInput::placeholder {color:#9aabad}
+
+.send {
+  width:39px;
+  height:39px;
+  flex:0 0 39px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#087e82,#176b91);
+  color:white;
+  font-size:17px;
+}
+
+.send:disabled {opacity:.45;cursor:not-allowed}
+
+.composer-note {
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  padding:7px 3px 0;
+  color:#829597;
+  font-size:9px;
+}
+
+.side {display:grid;gap:12px}
+
+.side-card {padding:16px;box-shadow:none}
+.side-card h3 {font-size:13px;margin:0 0 7px}
+
+.side-card p,.side-card li {
+  font-size:10px;
+  color:var(--muted);
+  margin:0;
+}
+
+.side-card ul {padding-left:16px;margin:7px 0 0}
+.side-card li {margin:4px 0}
+.side-icon {font-size:21px;margin-bottom:6px}
+
+.resources {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+  margin-top:20px;
+}
+
+.resource {padding:16px;box-shadow:none}
+.resource b {display:block;font-size:12px;margin:5px 0}
+.resource p {font-size:10px;color:var(--muted);margin:0 0 10px}
+.resource .emoji {font-size:21px}
+
+.disclaimer {
+  background:#fff8e9;
+  border:1px solid #f1dfb5;
+  color:#755a25;
+  border-radius:13px;
+  padding:11px;
+  font-size:10px;
+  margin-top:15px;
+}
+
+.footer {
+  text-align:center;
+  color:#789094;
+  font-size:10px;
+  padding:22px 10px;
+}
+
+.modal-backdrop {
+  position:fixed;
+  inset:0;
+  background:#102b31a8;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:18px;
+  z-index:50;
+}
+
+.modal-backdrop.show {display:flex}
+
+.modal {
+  max-width:640px;
+  width:100%;
+  max-height:85vh;
+  overflow:auto;
+  background:white;
+  border-radius:20px;
+  padding:22px;
+  box-shadow:0 25px 80px #0003;
+}
+
+.modal h2 {margin:0 0 9px;font-size:19px}
+.modal p,.modal li {font-size:12px;color:#526b6f}
+.modal-close {float:right}
+
+.handbook-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:9px;
+  margin-top:12px;
+}
+
+.handbook-item {
+  padding:12px;
+  border-radius:12px;
+  background:#f3f8f7;
+  border:1px solid var(--line);
+}
+
+.handbook-item b {
+  display:block;
+  color:var(--teal);
+  font-size:11px;
+}
+
+.handbook-item span {font-size:10px;color:var(--muted)}
+
+@media(max-width:850px) {
+  .hero {grid-template-columns:1fr}
+  .layout {grid-template-columns:1fr}
+  .side {grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:600px) {
+  main {padding:17px 12px 40px}
+  .nav {padding:10px 12px}
+  .nav-actions .btn:not(.btn-primary) {display:none}
+  .hero-main {padding:22px}
+  .chat-head {padding:13px}
+  .messages {height:58vh;min-height:350px;padding:12px}
+  .bubble {max-width:88%;font-size:11px}
+  .side {grid-template-columns:1fr}
+  .resources {grid-template-columns:1fr}
+  .pillars {grid-template-columns:repeat(2,1fr)}
+  .handbook-grid {grid-template-columns:1fr}
+  .composer {padding:10px}
+}
+</style>
+</head>
+
+<body>
+
+<header class="topbar">
+<nav class="nav">
+  <div class="brand">
+    <div class="logo">🌱</div>
+    <div>
+      <strong>SAFE NET 4A</strong>
+      <small>THPT Mộ Đức · Không gian hỗ trợ an toàn số</small>
+    </div>
+  </div>
+
+  <div class="nav-actions">
+    <button class="btn btn-soft" id="handbookTop">Cẩm nang 4A</button>
+    <button class="btn btn-quiet" id="newChatTop">＋ Cuộc trò chuyện mới</button>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-main">
+    <span class="eyebrow">ADAPTIVE DIGITAL SAFETY SYSTEM</span>
+    <h1>Mỗi câu chuyện,<br>
+    <span style="color:var(--teal)">một hướng hỗ trợ phù hợp.</span></h1>
+    <p>
+      Trò chuyện tự nhiên, hỏi tiếp khi cần và điều chỉnh hướng hỗ trợ
+      theo những gì bạn chia sẻ. SAFE NET đồng hành cùng bạn qua 4A:
+      Nhận diện – Phân tích – Thích ứng – Hỗ trợ.
+    </p>
+  </div>
+
+  <aside class="hero-side">
+    <h3>SAFE NET 4A · Bốn trụ cột</h3>
+    <p>Không phải một câu trả lời cố định. Mỗi lượt trò chuyện có thể mở ra hướng tìm hiểu mới.</p>
+
+    <div class="pillars">
+      <div class="pillar"><b>A1</b><span>Awareness<br>Nhận diện</span></div>
+      <div class="pillar"><b>A2</b><span>Analysis<br>Phân tích</span></div>
+      <div class="pillar"><b>A3</b><span>Adaptation<br>Thích ứng</span></div>
+      <div class="pillar"><b>A4</b><span>Assistance<br>Hỗ trợ</span></div>
+    </div>
+  </aside>
+</section>
+
+<section class="layout" id="chat">
+
+<div class="chat-shell">
+
+  <div class="chat-head">
+    <div class="chat-title">
+      <div class="bot-avatar">🛡️</div>
+      <div>
+        <strong>SAFE NET AI</strong>
+        <small>AI trò chuyện nhiều lượt · Lắng nghe và tìm hướng phù hợp</small>
+      </div>
+    </div>
+    <span class="online">Sẵn sàng trò chuyện</span>
+  </div>
+
+  <div class="messages" id="messages" aria-live="polite">
+    <div class="welcome" id="welcome">
+      <div class="welcome-mark">🌿</div>
+      <h2>Chào bạn, mình đang lắng nghe.</h2>
+      <p>
+        Bạn có thể kể từng chút một. Mình sẽ cùng bạn nhìn lại chuyện gì
+        đang xảy ra, điều gì khiến bạn khó xử và tìm hướng phù hợp.
+        Bạn cũng có thể chọn nhanh một tình huống bên dưới.
+      </p>
+
+      <div class="suggestions">
+
+        <button class="suggestion" data-prompt="Mình đang bị một nhóm bạn nói xấu và chế giễu trong nhóm chat lớp. Mình không biết nên phản ứng thế nào.">
+          💬 Bị nói xấu trong nhóm chat
+        </button>
+
+        <button class="suggestion" data-prompt="Mình cảm thấy bị cô lập, các bạn thường không cho mình tham gia vào nhóm.">
+          🌧️ Cảm thấy bị cô lập
+        </button>
+
+        <button class="suggestion" data-prompt="Mình và bạn thân vừa xảy ra mâu thuẫn. Mình muốn làm hòa nhưng không biết bắt đầu từ đâu.">
+          🫂 Mâu thuẫn với bạn thân
+        </button>
+
+        <button class="suggestion" data-prompt="Mình đang chịu áp lực học tập và cảm thấy rất khó cân bằng mọi thứ.">
+          📚 Áp lực học tập
+        </button>
+
+        <button class="suggestion" data-prompt="Có người lạ liên tục nhắn tin làm phiền và khiến mình thấy không an toàn.">
+          🛡️ Bị làm phiền trên mạng
+        </button>
+
+        <button class="suggestion" data-prompt="Có người sử dụng hình ảnh hoặc giả mạo tài khoản của mình khi chưa được đồng ý.">
+          🔐 Bị giả mạo / dùng ảnh
+        </button>
+
+        <button class="suggestion" data-prompt="Mình thấy một bạn bị bắt nạt nhưng sợ nếu can thiệp thì bản thân cũng bị liên lụy.">
+          👀 Muốn giúp người chứng kiến
+        </button>
+
+        <button class="suggestion" data-prompt="Mình có một chuyện khó nói, chưa biết bắt đầu kể từ đâu.">
+          🌱 Mình muốn tâm sự
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <form class="composer" id="chatForm">
+    <div class="composer-wrap">
+      <textarea id="messageInput" rows="1" maxlength="4000"
+        placeholder="Bạn cứ kể tự nhiên nhé… (Enter để gửi, Shift + Enter để xuống dòng)"
+        aria-label="Tin nhắn"></textarea>
+
+      <button class="send" id="sendBtn" type="submit" aria-label="Gửi tin nhắn">➤</button>
+    </div>
+
+    <div class="composer-note">
+      <span>Không nhập họ tên, địa chỉ, mật khẩu hoặc thông tin nhận dạng cá nhân.</span>
+      <span id="counter">0/4000</span>
+    </div>
+  </form>
+
+</div>
+
+<aside class="side">
+
+  <div class="side-card">
+    <div class="side-icon">🧭</div>
+    <h3>A1 · Nhận diện</h3>
+    <p>Phân biệt hành vi bắt nạt, xung đột, trêu đùa và tình huống chưa đủ dữ kiện.</p>
+  </div>
+
+  <div class="side-card">
+    <div class="side-icon">🧩</div>
+    <h3>A2–A3 · Phân tích & thích ứng</h3>
+    <p>Làm rõ vai trò, tần suất, ảnh hưởng và chọn giải pháp phù hợp thay vì dùng một công thức cho tất cả.</p>
+  </div>
+
+  <div class="side-card">
+    <div class="side-icon">🤝</div>
+    <h3>A4 · Hỗ trợ</h3>
+    <p>Gợi ý cách tìm người lớn đáng tin cậy, giáo viên hoặc kênh hỗ trợ phù hợp khi cần.</p>
+  </div>
+
+</aside>
+</section>
+
+<section class="resources">
+
+  <article class="resource">
+    <div class="emoji">📘</div>
+    <b>Cẩm nang SAFE NET 4A</b>
+    <p>Tìm hiểu bốn bước nhận diện, phân tích, thích ứng và hỗ trợ.</p>
+    <button class="btn btn-soft" id="handbookCard">Mở cẩm nang</button>
+  </article>
+
+  <article class="resource">
+    <div class="emoji">💌</div>
+    <b>Trạm Lắng Nghe</b>
+    <p>Kênh chia sẻ do dự án thiết lập. Đọc thông tin riêng tư của nền tảng trước khi gửi.</p>
+    <button class="btn btn-soft" id="padletBtn">Mở Trạm Lắng Nghe ↗</button>
+  </article>
+
+  <article class="resource">
+    <div class="emoji">🔄</div>
+    <b>Làm mới hội thoại</b>
+    <p>Bắt đầu một chủ đề mới. Nội dung hội thoại hiện tại sẽ được xóa khỏi giao diện.</p>
+    <button class="btn btn-quiet" id="newChatCard">Bắt đầu lại</button>
+  </article>
+
+</section>
+
+<div class="disclaimer">
+  SAFE NET là công cụ hỗ trợ giáo dục, không thay thế người lớn đáng tin cậy,
+  chuyên viên tâm lý, nhà trường hoặc cơ quan có trách nhiệm.
+  Nội dung bạn gửi được chuyển tới dịch vụ AI để tạo phản hồi; không nhập họ tên,
+  địa chỉ, mật khẩu, tài khoản hay hình ảnh riêng tư.
+  Nếu có đe dọa hoặc nguy cơ mất an toàn, hãy tìm người lớn đáng tin cậy
+  hỗ trợ trực tiếp.
+</div>
+
+</main>
+
+<footer class="footer">
+Dự án nghiên cứu khoa học · SAFE NET 4A · THPT Mộ Đức
+</footer>
+
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal">
+    <button class="btn btn-quiet modal-close" id="modalClose">Đóng ✕</button>
+
+    <h2 id="modalTitle">Cẩm nang SAFE NET 4A</h2>
+    <p>Bốn bước gợi ý để nhận diện và tìm hướng hỗ trợ phù hợp. Đây là hướng dẫn tham khảo, không phải quy trình bắt buộc trong mọi trường hợp.</p>
+
+    <div class="handbook-grid">
+
+      <div class="handbook-item">
+        <b>A1 · AWARENESS – NHẬN DIỆN</b>
+        <span>Quan sát nội dung, người liên quan, tần suất và bối cảnh. Không vội kết luận khi thiếu dữ kiện.</span>
+      </div>
+
+      <div class="handbook-item">
+        <b>A2 · ANALYSIS – PHÂN TÍCH</b>
+        <span>Làm rõ điều gì đã xảy ra, có lặp lại không, ai bị ảnh hưởng và có dấu hiệu đe dọa hay ép buộc không.</span>
+      </div>
+
+      <div class="handbook-item">
+        <b>A3 · ADAPTATION – THÍCH ỨNG</b>
+        <span>Cân nhắc nhiều lựa chọn: bảo vệ tài khoản, lưu thông tin, báo cáo, đặt giới hạn hoặc tìm người hỗ trợ.</span>
+      </div>
+
+      <div class="handbook-item">
+        <b>A4 · ASSISTANCE – HỖ TRỢ</b>
+        <span>Kết nối người đáng tin cậy, giáo viên, tư vấn viên hoặc cơ quan có trách nhiệm; điều chỉnh khi tình hình thay đổi.</span>
+      </div>
+
+    </div>
+
+    <h3>Nguyên tắc an toàn</h3>
+    <ul>
+      <li>Không chia sẻ lại nội dung gây tổn thương để “chứng minh” với nhiều người.</li>
+      <li>Không đáp trả bằng đe dọa, xúc phạm hoặc công khai thông tin cá nhân.</li>
+      <li>Không tự xử lý một mình nếu có đe dọa, ép buộc hoặc nguy cơ an toàn.</li>
+      <li>Chỉ chia sẻ thông tin cần thiết với người có trách nhiệm hỗ trợ.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+
+  const messagesEl = $("messages");
+  const inputEl = $("messageInput");
+  const sendBtn = $("sendBtn");
+  const form = $("chatForm");
+
+  const history = [];
+  let busy = false;
+
+  function timeLabel() {
+    return new Intl.DateTimeFormat("vi-VN", {
+      hour:"2-digit",
+      minute:"2-digit"
+    }).format(new Date());
+  }
+
+  function addMessage(role, text) {
+    $("welcome")?.remove();
+
+    const row = document.createElement("div");
+    row.className = `msg-row ${role === "user" ? "user" : "assistant"}`;
+
+    if (role !== "user") {
+      const avatar = document.createElement("div");
+      avatar.className = "msg-avatar";
+      avatar.textContent = "🛡️";
+      row.appendChild(avatar);
+    }
+
+    const wrap = document.createElement("div");
+    const bubble = document.createElement("div");
+
+    bubble.className = "bubble";
+    bubble.textContent = text;
+
+    const time = document.createElement("div");
+    time.className = "msg-time";
+    time.textContent = timeLabel();
+
+    wrap.append(bubble, time);
+    row.appendChild(wrap);
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+
+    return row;
+  }
+
+  function showTyping() {
+    const row = document.createElement("div");
+    row.className = "msg-row assistant";
+    row.id = "typingRow";
+
+    const avatar = document.createElement("div");
+    avatar.className = "msg-avatar";
+    avatar.textContent = "🛡️";
+
+    const bubble = document.createElement("div");
+    bubble.className = "bubble typing";
+    bubble.innerHTML = "<i></i><i></i><i></i>";
+
+    row.append(avatar, bubble);
+    messagesEl.appendChild(row);
+    messagesEl.scrollTop = messagesEl.scrollHeight;
+  }
+
+  function setBusy(value) {
+    busy = value;
+    sendBtn.disabled = value;
+    inputEl.disabled = value;
+    sendBtn.textContent = value ? "…" : "➤";
+  }
+
+  async function sendMessage(text) {
+    const clean = text.trim();
+
+    if (!clean || busy || clean.length > 4000) return;
+
+    history.push({
+      role:"user",
+      content:clean
+    });
+
+    // Giữ ngữ cảnh nhiều lượt gần nhất.
+    if (history.length > 32) {
+      history.splice(0, history.length - 32);
+    }
+
+    addMessage("user", clean);
+
+    inputEl.value = "";
+    $("counter").textContent = "0/4000";
+    inputEl.style.height = "auto";
+
+    setBusy(true);
+    showTyping();
+
+    try {
+      const response = await fetch("/.netlify/functions/chat", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({messages:history.slice(-20)})
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || "Chưa thể kết nối SAFE NET lúc này.");
+      }
+
+      const answer = (data.reply || "").trim();
+
+      if (!answer) {
+        throw new Error("Trợ lý chưa tạo được phản hồi. Bạn hãy thử gửi lại.");
+      }
+
+      history.push({
+        role:"assistant",
+        content:answer
+      });
+
+      addMessage("assistant", answer);
+
+    } catch (error) {
+      history.pop();
+
+      addMessage(
+        "assistant",
+        `Mình chưa kết nối được với hệ thống AI. ${error.message}
+
+Bạn có thể thử gửi lại sau. Nếu đang có nguy cơ mất an toàn, hãy tìm người lớn đáng tin cậy hỗ trợ trực tiếp thay vì chờ chatbot.`
+      );
+
+    } finally {
+      $("typingRow")?.remove();
+      setBusy(false);
+      inputEl.focus();
+    }
+  }
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    sendMessage(inputEl.value);
+  });
+
+  inputEl.addEventListener("input", () => {
+    $("counter").textContent =
+      `${inputEl.value.length}/4000`;
+
+    inputEl.style.height = "auto";
+
+    inputEl.style.height =
+      Math.min(inputEl.scrollHeight, 130) + "px";
+  });
+
+  inputEl.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      form.requestSubmit();
+    }
+  });
+
+  document.querySelectorAll("[data-prompt]").forEach((button) => {
+    button.addEventListener("click", () => {
+      sendMessage(button.dataset.prompt);
+    });
+  });
+
+  function newChat() {
+    if (busy) return;
+
+    history.length = 0;
+
+    messagesEl.innerHTML = `
+      <div class="welcome" id="welcome">
+        <div class="welcome-mark">🌿</div>
+        <h2>Mình vẫn sẵn sàng lắng nghe.</h2>
+        <p>Bạn có thể bắt đầu từ bất kỳ điều gì đang khiến mình băn khoăn — chuyện trên mạng hay ngoài đời đều được.</p>
+
+        <div class="suggestions">
+          <button class="suggestion" data-prompt="Mình đang bị một nhóm bạn nói xấu và chế giễu trong nhóm chat lớp. Mình không biết nên phản ứng thế nào.">💬 Bị nói xấu trong nhóm chat</button>
+
+          <button class="suggestion" data-prompt="Mình cảm thấy bị cô lập, các bạn thường không cho mình tham gia vào nhóm.">🌧️ Cảm thấy bị cô lập</button>
+
+          <button class="suggestion" data-prompt="Mình và bạn thân vừa xảy ra mâu thuẫn. Mình muốn làm hòa nhưng không biết bắt đầu từ đâu.">🫂 Mâu thuẫn với bạn thân</button>
+
+          <button class="suggestion" data-prompt="Mình đang chịu áp lực học tập và cảm thấy rất khó cân bằng mọi thứ.">📚 Áp lực học tập</button>
+
+          <button class="suggestion" data-prompt="Có người lạ liên tục nhắn tin làm phiền và khiến mình thấy không an toàn.">🛡️ Bị làm phiền trên mạng</button>
+
+          <button class="suggestion" data-prompt="Mình có một chuyện khó nói, chưa biết bắt đầu kể từ đâu.">🌱 Mình muốn tâm sự</button>
+        </div>
+      </div>
+    `;
+
+    messagesEl.querySelectorAll("[data-prompt]").forEach((button) => {
+      button.addEventListener("click", () => {
+        sendMessage(button.dataset.prompt);
+      });
+    });
+
+    inputEl.focus();
+  }
+
+  $("newChatTop").addEventListener("click", newChat);
+  $("newChatCard").addEventListener("click", newChat);
+
+  const modal = $("modalBackdrop");
+
+  const openModal = () => modal.classList.add("show");
+  const closeModal = () => modal.classList.remove("show");
+
+  $("handbookTop").addEventListener("click", openModal);
+  $("handbookCard").addEventListener("click", openModal);
+  $("modalClose").addEventListener("click", closeModal);
+
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeModal();
+  });
+
+  $("padletBtn").addEventListener("click", () => {
+    window.open(
+      "https://padlet.com/bngan5441/TramLangNghe_THPTMoDuc",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  });
+
+})();
+</script>
+
+</body>
+</html>
