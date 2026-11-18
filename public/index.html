@@ -471,6 +471,333 @@ h1 {
   padding:22px 10px;
 }
 
+.counsel-section {
+  margin-top:20px;
+  background:#ffffffeb;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:24px;
+}
+
+.counsel-head {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+  margin-bottom:16px;
+}
+
+.counsel-head h2 {font-size:20px;margin:6px 0 0;letter-spacing:-.02em}
+.counsel-head p {font-size:11px;color:var(--muted);margin:0}
+
+.counsel-grid {
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:12px;
+}
+
+.expert-card {
+  background:linear-gradient(150deg,#e7f7f2,#eff5ff);
+  border:1px solid #d9e9e8;
+  border-radius:18px;
+  padding:18px;
+  display:flex;
+  gap:14px;
+  align-items:flex-start;
+}
+
+.expert-avatar {
+  width:58px;
+  height:58px;
+  flex:0 0 58px;
+  border-radius:18px;
+  background:linear-gradient(135deg,#087e82,#4d9bd1);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:24px;
+  font-weight:800;
+  box-shadow:0 8px 20px #087e8230;
+}
+
+.expert-card h3 {margin:0;font-size:16px}
+.expert-role {
+  display:inline-block;
+  margin:4px 0 7px;
+  padding:3px 9px;
+  border-radius:999px;
+  background:#ffffffcc;
+  border:1px solid #cfe4df;
+  color:var(--teal2);
+  font-size:9.5px;
+  font-weight:750;
+  letter-spacing:.04em;
+  text-transform:uppercase;
+}
+
+.expert-card p {font-size:11px;color:var(--muted);margin:0}
+
+.team-card {
+  background:#ffffffd9;
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:18px;
+}
+
+.team-card h3 {margin:0 0 4px;font-size:14px;display:flex;align-items:center;gap:8px}
+.team-card p {font-size:10.5px;color:var(--muted);margin:0 0 10px}
+
+.team-list {padding-left:16px;margin:0}
+.team-list li {
+  font-size:10.5px;
+  color:#456267;
+  margin:5px 0;
+}
+
+.team-note {
+  margin-top:12px;
+  padding:9px 11px;
+  border-radius:11px;
+  background:var(--mint);
+  border:1px solid #d4e9e4;
+  font-size:9.5px;
+  color:var(--teal2);
+}
+
+.ai-box {
+  margin-top:12px;
+  background:#ffffffd9;
+  border:1px solid var(--line);
+  border-radius:18px;
+  overflow:hidden;
+}
+
+.ai-box-head {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  padding:13px 16px;
+  border-bottom:1px solid var(--line);
+  background:#fbfefd;
+}
+
+.ai-box-title {display:flex;align-items:center;gap:10px}
+
+.ai-avatar {
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  background:linear-gradient(135deg,#dff4ed,#e4efff);
+  display:grid;
+  place-items:center;
+  font-size:17px;
+}
+
+.ai-box-title strong {display:block;font-size:12.5px}
+.ai-box-title small {display:block;color:var(--muted);font-size:9.5px}
+
+.ai-log {
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  padding:14px 16px;
+  max-height:260px;
+  overflow-y:auto;
+  background:linear-gradient(180deg,#f8fcfb,#f5f8ff);
+}
+
+.ai-msg {
+  max-width:88%;
+  padding:10px 12px;
+  border-radius:14px;
+  font-size:11.5px;
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+  border:1px solid var(--line);
+  background:#fff;
+  box-shadow:0 3px 10px #17343a08;
+}
+
+.ai-msg.bot {align-self:flex-start;border-bottom-left-radius:5px}
+.ai-msg.me {align-self:flex-end;background:var(--user);border-color:#d2e4fa;border-bottom-right-radius:5px}
+
+.ai-chips {
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  padding:0 16px 12px;
+  background:#fbfefd;
+}
+
+.chip {
+  border:1px solid #d5e5e2;
+  background:#fff;
+  color:#456267;
+  border-radius:999px;
+  padding:6px 10px;
+  font-size:9.5px;
+}
+
+.chip:hover {background:var(--mint);border-color:#85c6b9;color:var(--teal2)}
+
+.ai-compose {
+  display:flex;
+  gap:8px;
+  padding:12px 16px;
+  border-top:1px solid var(--line);
+  background:#fff;
+}
+
+.ai-compose input {
+  flex:1;
+  border:1px solid #cddfdd;
+  border-radius:12px;
+  padding:9px 12px;
+  font:inherit;
+  font-size:11.5px;
+  outline:0;
+  background:#fbfefd;
+  color:var(--ink);
+}
+
+.ai-compose input:focus {
+  border-color:var(--teal);
+  box-shadow:0 0 0 4px #087e8215;
+}
+
+.ai-compose .send {
+  width:38px;
+  height:38px;
+  flex:0 0 38px;
+  border:0;
+  border-radius:12px;
+  background:linear-gradient(135deg,#087e82,#176b91);
+  color:#fff;
+  font-size:16px;
+}
+
+.ai-compose .send:disabled {opacity:.45;cursor:not-allowed}
+
+.ai-hint {
+  padding:0 16px 11px;
+  font-size:9px;
+  color:#829597;
+  background:#fff;
+}
+
+.share-section {
+  margin-top:17px;
+  background:#ffffffeb;
+  border:1px solid var(--line);
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  padding:24px;
+}
+
+.share-head h2 {font-size:20px;margin:6px 0 0;letter-spacing:-.02em}
+.share-head p {font-size:11px;color:var(--muted);margin:0 0 14px;max-width:640px}
+
+.share-form {
+  display:grid;
+  gap:9px;
+  background:#ffffffd9;
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px;
+  max-width:680px;
+}
+
+.share-form input,.share-form textarea,
+.admin-form input,.admin-form textarea {
+  border:1px solid #cddfdd;
+  border-radius:11px;
+  padding:9px 11px;
+  font:inherit;
+  font-size:11.5px;
+  outline:0;
+  background:#fbfefd;
+  color:var(--ink);
+}
+
+.share-form input:focus,.share-form textarea:focus,
+.admin-form input:focus,.admin-form textarea:focus {
+  border-color:var(--teal);
+  box-shadow:0 0 0 4px #087e8215;
+}
+
+.share-form textarea {resize:vertical;min-height:74px}
+
+.share-form .share-actions {display:flex;justify-content:flex-end}
+
+.share-list {display:grid;gap:9px;margin-top:14px;max-width:680px}
+
+.share-item {
+  background:#ffffffd9;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:12px 14px;
+}
+
+.share-item .share-meta {
+  font-size:9.5px;
+  color:#829597;
+  margin-bottom:4px;
+  font-weight:700;
+}
+
+.share-item .share-text {
+  font-size:11.5px;
+  color:var(--ink);
+  white-space:pre-wrap;
+  overflow-wrap:anywhere;
+}
+
+.share-empty {font-size:10.5px;color:var(--muted)}
+
+.admin-panel {margin-top:12px;padding-top:14px;border-top:1px solid var(--line)}
+.admin-panel h3 {font-size:13px;margin:0 0 4px}
+.admin-panel > p {font-size:10px;color:var(--muted);margin:0 0 9px}
+
+.admin-unlock {display:flex;gap:8px;margin-bottom:4px}
+.admin-unlock input {flex:1}
+
+.admin-form {display:grid;gap:9px;margin-top:10px}
+.admin-form textarea {resize:vertical;min-height:64px}
+.admin-form .admin-actions {display:flex;justify-content:flex-end;gap:8px}
+
+.admin-doc-list {display:grid;gap:7px;margin-top:10px}
+
+.admin-doc {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  background:#f3f8f7;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:9px 11px;
+  font-size:11px;
+}
+
+.admin-doc small {display:block;color:#829597;font-size:9px}
+.admin-doc .del {
+  border:1px solid #f1cfcb;
+  background:#fff2ef;
+  color:#a4442f;
+  border-radius:9px;
+  padding:5px 9px;
+  font-size:10px;
+  font-weight:700;
+  flex:0 0 auto;
+}
+
+.admin-msg {font-size:10.5px;margin-top:8px;min-height:14px}
+.admin-msg.ok {color:#16805d}
+.admin-msg.err {color:#a4442f}
+
 .modal-backdrop {
   position:fixed;
   inset:0;
@@ -525,6 +852,7 @@ h1 {
   .hero {grid-template-columns:1fr}
   .layout {grid-template-columns:1fr}
   .side {grid-template-columns:repeat(3,1fr)}
+  .counsel-grid {grid-template-columns:1fr}
 }
 
 @media(max-width:600px) {
@@ -558,6 +886,7 @@ h1 {
 
   <div class="nav-actions">
     <button class="btn btn-soft" id="handbookTop">Cẩm nang 4A</button>
+    <button class="btn btn-quiet" id="adminTop">⚙ Quản trị</button>
     <button class="btn btn-quiet" id="newChatTop">＋ Cuộc trò chuyện mới</button>
   </div>
 </nav>
@@ -693,6 +1022,107 @@ h1 {
 </aside>
 </section>
 
+<section class="counsel-section" id="counseling">
+
+  <div class="counsel-head">
+    <div>
+      <span class="eyebrow">BAN TƯ VẤN TÂM LÝ</span>
+      <h2>Người đồng hành phía sau SAFE NET</h2>
+      <p>Bạn không đi một mình — luôn có thầy cô sẵn sàng lắng nghe bên cạnh AI.</p>
+    </div>
+  </div>
+
+  <div class="counsel-grid">
+
+    <article class="expert-card">
+      <div class="expert-avatar">TH</div>
+      <div>
+        <h3 id="expertName">Thầy Nguyễn Hữu Hải</h3>
+        <span class="expert-role" id="expertRole">Chuyên gia tư vấn tâm lý · Ban tư vấn trường THPT Mộ Đức</span>
+        <p id="expertBody">
+          Người chịu trách nhiệm chuyên môn của ban tư vấn tâm lý. Thầy trực tiếp
+          lắng nghe, định hướng hỗ trợ cho học sinh trong các trường hợp liên quan
+          đến áp lực học tập, mâu thuẫn bạn bè, bắt nạt — bạo lực học đường và
+          an toàn trên không gian mạng. Mọi tình huống nhạy cảm mà AI nhận diện
+          sẽ được kết nối đến thầy và ban tư vấn để xử lý trực tiếp.
+        </p>
+      </div>
+    </article>
+
+    <article class="team-card">
+      <h3 id="groupTitle">👥 Ban tư vấn tâm lý</h3>
+      <p id="groupDesc">Nhóm giáo viên thuộc ban tư vấn của trường, cùng thầy Hữu Hải đồng hành với học sinh.</p>
+
+      <ul class="team-list" id="groupItems">
+        <li>Nghe chia sẻ riêng tư, giữ bí mật trong phạm vi trách nhiệm.</li>
+        <li>Phối hợp với gia đình, giáo viên chủ nhiệm khi cần thiết.</li>
+        <li>Hỗ trợ các bạn đang bị ảnh hưởng, người chứng kiến và cả người muốn thay đổi hành vi của mình.</li>
+      </ul>
+
+      <div class="team-note" id="groupNote">
+        📮 Muốn gặp trực tiếp? Đăng ký qua lớp, qua giáo viên chủ nhiệm,
+        hoặc gửi chia sẻ tại <strong>Trạm Lắng Nghe</strong> bên dưới — thầy cô sẽ chủ động liên hệ bạn.
+      </div>
+    </article>
+
+  </div>
+
+  <div class="ai-box">
+    <div class="ai-box-head">
+      <div class="ai-box-title">
+        <div class="ai-avatar">🤖</div>
+        <div>
+          <strong>Trợ lý AI tự trả lời về đội ngũ tư vấn</strong>
+          <small>Hỏi nhanh về cách gặp thầy cô, khi nào nên tìm tư vấn…</small>
+        </div>
+      </div>
+      <span class="online">Tự động trả lời</span>
+    </div>
+
+    <div class="ai-log" id="aiLog" aria-live="polite"></div>
+
+    <div class="ai-chips">
+      <button class="chip" data-ai="Làm sao để được gặp thầy Nguyễn Hữu Hải hoặc ban tư vấn tâm lý?">❓ Cách gặp thầy cô tư vấn</button>
+      <button class="chip" data-ai="Ban tư vấn tâm lý giúp được mình những gì? Mình có phải chia sẻ tên không?">🛡️ Ban tư vấn giúp gì & có cần tên không?</button>
+      <button class="chip" data-ai="Khi nào thì mình nên gặp thầy cô tư vấn thay vì chỉ chat với AI?">🧭 Khi nào nên gặp tư vấn?</button>
+      <button class="chip" data-ai="Chuyện mình kể với ban tư vấn có được bảo mật không?">🔒 Chuyện riêng có được bảo mật?</button>
+    </div>
+
+    <form class="ai-compose" id="aiForm">
+      <input type="text" id="aiInput" maxlength="500" placeholder="Bạn muốn hỏi gì về đội ngũ tư vấn?" aria-label="Câu hỏi cho AI">
+      <button class="send" id="aiSend" type="submit" aria-label="Gửi câu hỏi">➤</button>
+    </form>
+
+    <div class="ai-hint">
+      AI chỉ trả lời thông tin tham khảo; không thay thế buổi tư vấn trực tiếp với thầy cô.
+    </div>
+  </div>
+
+</section>
+
+<section class="share-section" id="shareSection">
+  <div class="share-head">
+    <span class="eyebrow">KHÔNG GIAN CHIA SẺ</span>
+    <h2>Kể chuyện của bạn</h2>
+    <p>
+      Chia sẻ câu chuyện, suy nghĩ hoặc góp ý cho dự án — những chia sẻ mới nhất
+      sẽ hiển thị bên dưới. Chỉ dùng bí danh, không nhập họ tên, lớp, số điện
+      thoại hay thông tin cá nhân. Nếu cần thầy cô hỗ trợ riêng, hãy dùng
+      Trạm Lắng Nghe hoặc liên hệ ban tư vấn trực tiếp.
+    </p>
+  </div>
+
+  <form class="share-form" id="shareForm">
+    <input type="text" id="shareName" maxlength="60" placeholder="Bí danh (không bắt buộc — ví dụ: Một bạn 11A)" aria-label="Bí danh">
+    <textarea id="shareMessage" maxlength="2000" placeholder="Bạn muốn chia sẻ điều gì?" aria-label="Nội dung chia sẻ"></textarea>
+    <div class="share-actions">
+      <button class="btn btn-primary" type="submit" id="shareSubmit">Gửi chia sẻ</button>
+    </div>
+  </form>
+
+  <div class="share-list" id="shareList" aria-live="polite"></div>
+</section>
+
 <section class="resources">
 
   <article class="resource">
@@ -771,6 +1201,61 @@ Dự án nghiên cứu khoa học · SAFE NET 4A · THPT Mộ Đức
       <li>Không tự xử lý một mình nếu có đe dọa, ép buộc hoặc nguy cơ an toàn.</li>
       <li>Chỉ chia sẻ thông tin cần thiết với người có trách nhiệm hỗ trợ.</li>
     </ul>
+  </div>
+</div>
+
+<div class="modal-backdrop" id="adminBackdrop" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+  <div class="modal">
+    <button class="btn btn-quiet modal-close" id="adminClose">Đóng ✕</button>
+
+    <h2 id="adminTitle">Quản trị nội dung</h2>
+    <p>Mỗi khu vực dùng một mật khẩu riêng. Mật khẩu được kiểm tra phía server, có thể thay đổi qua biến môi trường <code>ADMIN_PASS_DOCS</code> / <code>ADMIN_PASS_TEAM</code>.</p>
+
+    <div class="admin-panel">
+      <h3>📄 Tài liệu nội dung trả lời (dùng cho AI)</h3>
+      <p>Nội dung upload tại đây được AI dùng làm ngữ cảnh khi trả lời trong khung chat chính và ô hỏi đội ngũ tư vấn.</p>
+
+      <div class="admin-unlock" id="docsUnlockRow">
+        <input type="password" id="docsPass" placeholder="Mật khẩu khu tài liệu" aria-label="Mật khẩu khu tài liệu">
+        <button class="btn btn-soft" id="docsUnlock">Mở</button>
+      </div>
+
+      <div class="admin-form" id="docsForm" hidden>
+        <input type="text" id="docTitle" maxlength="120" placeholder="Tiêu đề tài liệu" aria-label="Tiêu đề tài liệu">
+        <textarea id="docContent" maxlength="12000" placeholder="Nội dung tài liệu…" aria-label="Nội dung tài liệu"></textarea>
+        <div class="admin-actions">
+          <button class="btn btn-primary" id="docAdd">＋ Thêm tài liệu</button>
+        </div>
+      </div>
+
+      <div class="admin-doc-list" id="docList"></div>
+      <div class="admin-msg" id="docsMsg"></div>
+    </div>
+
+    <div class="admin-panel">
+      <h3>👥 Thông tin ban tư vấn tâm lý</h3>
+      <p>Chỉnh sửa nội dung hiển thị trong khung đội ngũ tư vấn trên trang chính.</p>
+
+      <div class="admin-unlock" id="teamUnlockRow">
+        <input type="password" id="teamPass" placeholder="Mật khẩu khu ban tư vấn" aria-label="Mật khẩu khu ban tư vấn">
+        <button class="btn btn-soft" id="teamUnlock">Mở</button>
+      </div>
+
+      <div class="admin-form" id="teamForm" hidden>
+        <input type="text" id="fExpertName" maxlength="200" placeholder="Tên chuyên gia" aria-label="Tên chuyên gia">
+        <input type="text" id="fExpertRole" maxlength="200" placeholder="Chức danh / vai trò" aria-label="Chức danh">
+        <textarea id="fExpertBody" maxlength="4000" placeholder="Mô tả chuyên gia" aria-label="Mô tả chuyên gia"></textarea>
+        <input type="text" id="fGroupTitle" maxlength="200" placeholder="Tiêu đề khung nhóm" aria-label="Tiêu đề khung nhóm">
+        <textarea id="fGroupDesc" maxlength="2000" placeholder="Mô tả nhóm" aria-label="Mô tả nhóm"></textarea>
+        <textarea id="fGroupItems" maxlength="4000" placeholder="Các gạch đầu dòng của nhóm — mỗi dòng một ý" aria-label="Gạch đầu dòng nhóm"></textarea>
+        <textarea id="fGroupNote" maxlength="2000" placeholder="Ghi chú cách liên hệ / gặp trực tiếp" aria-label="Ghi chú liên hệ"></textarea>
+        <div class="admin-actions">
+          <button class="btn btn-primary" id="teamSave">💾 Lưu thông tin</button>
+        </div>
+      </div>
+
+      <div class="admin-msg" id="teamMsg"></div>
+    </div>
   </div>
 </div>
 
@@ -997,7 +1482,10 @@ Bạn có thể thử gửi lại sau. Nếu đang có nguy cơ mất an toàn, 
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") closeModal();
+    if (event.key === "Escape") {
+      closeModal();
+      adminBackdrop.classList.remove("show");
+    }
   });
 
   $("padletBtn").addEventListener("click", () => {
@@ -1007,6 +1495,370 @@ Bạn có thể thử gửi lại sau. Nếu đang có nguy cơ mất an toàn, 
       "noopener,noreferrer"
     );
   });
+
+  const aiLog = $("aiLog");
+  const aiInput = $("aiInput");
+  const aiSend = $("aiSend");
+  const aiForm = $("aiForm");
+
+  let aiBusy = false;
+
+  function addAiMsg(role, text) {
+    const msg = document.createElement("div");
+    msg.className = `ai-msg ${role === "me" ? "me" : "bot"}`;
+    msg.textContent = text;
+    aiLog.appendChild(msg);
+    aiLog.scrollTop = aiLog.scrollHeight;
+  }
+
+  addAiMsg(
+    "bot",
+    "Chào bạn! Mình có thể trả lời nhanh về đội ngũ tư vấn tâm lý của trường — cách gặp thầy Nguyễn Hữu Hải và các thầy cô, hoặc khi nào nên tìm tư vấn. Bạn cứ chọn một câu hỏi gợi ý bên dưới hoặc tự hỏi nhé."
+  );
+
+  function aiWaiting(value) {
+    aiBusy = value;
+    aiSend.disabled = value;
+    aiInput.disabled = value;
+    aiSend.textContent = value ? "…" : "➤";
+  }
+
+  async function askAi(text) {
+    const clean = text.trim();
+
+    if (!clean || aiBusy || clean.length > 500) return;
+
+    addAiMsg("me", clean);
+    aiInput.value = "";
+    aiWaiting(true);
+
+    try {
+      const response = await fetch("/.netlify/functions/advisor", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({question:clean})
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || "Chưa thể kết nối AI lúc này.");
+      }
+
+      const answer = (data.reply || "").trim();
+
+      if (!answer) {
+        throw new Error("AI chưa tạo được câu trả lời. Bạn hãy thử lại.");
+      }
+
+      addAiMsg("bot", answer);
+
+    } catch (error) {
+      addAiMsg(
+        "bot",
+        `Mình chưa trả lời được lúc này (${error.message}).
+Bạn có thể thử lại, hoặc gặp trực tiếp thầy Nguyễn Hữu Hải cùng ban tư vấn tâm lý qua lớp / giáo viên chủ nhiệm.`
+      );
+
+    } finally {
+      aiWaiting(false);
+      aiInput.focus();
+    }
+  }
+
+  aiForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    askAi(aiInput.value);
+  });
+
+  document.querySelectorAll("[data-ai]").forEach((chip) => {
+    chip.addEventListener("click", () => askAi(chip.dataset.ai));
+  });
+
+  // ---------- Nội dung động: ban tư vấn + chia sẻ ----------
+
+  let currentContent = null;
+
+  function renderContent(data) {
+    currentContent = data;
+
+    if (data.team) {
+      $("expertName").textContent = data.team.title;
+      $("expertRole").textContent = data.team.role;
+      $("expertBody").textContent = data.team.body;
+    }
+
+    if (data.group) {
+      $("groupTitle").textContent = data.group.title;
+      $("groupDesc").textContent = data.group.desc;
+
+      const items = $("groupItems");
+      items.innerHTML = "";
+      (data.group.items || []).forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        items.appendChild(li);
+      });
+
+      $("groupNote").textContent = data.group.note;
+    }
+  }
+
+  function renderShares(list) {
+    const container = $("shareList");
+    container.innerHTML = "";
+
+    if (!list || list.length === 0) {
+      const empty = document.createElement("p");
+      empty.className = "share-empty";
+      empty.textContent = "Chưa có chia sẻ nào. Bạn hãy là người đầu tiên nhé!";
+      container.appendChild(empty);
+      return;
+    }
+
+    list.forEach((share) => {
+      const item = document.createElement("div");
+      item.className = "share-item";
+
+      const meta = document.createElement("div");
+      meta.className = "share-meta";
+      const when = share.createdAt
+        ? new Intl.DateTimeFormat("vi-VN", { day:"2-digit", month:"2-digit", hour:"2-digit", minute:"2-digit" }).format(new Date(share.createdAt))
+        : "";
+      meta.textContent = `${share.name || "Ẩn danh"} · ${when}`;
+
+      const text = document.createElement("div");
+      text.className = "share-text";
+      text.textContent = share.message;
+
+      item.append(meta, text);
+      container.appendChild(item);
+    });
+  }
+
+  async function loadContent() {
+    try {
+      const response = await fetch("/.netlify/functions/content");
+      if (!response.ok) return;
+      const data = await response.json();
+      renderContent(data);
+      renderShares(data.shares);
+    } catch {
+      // Giữ nội dung mặc định nếu không tải được.
+    }
+  }
+
+  const shareForm = $("shareForm");
+  const shareName = $("shareName");
+  const shareMessage = $("shareMessage");
+  const shareSubmit = $("shareSubmit");
+
+  shareForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const message = shareMessage.value.trim();
+    if (!message || shareSubmit.disabled) return;
+
+    shareSubmit.disabled = true;
+    shareSubmit.textContent = "Đang gửi…";
+
+    try {
+      const response = await fetch("/.netlify/functions/share", {
+        method:"POST",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify({name:shareName.value.trim(), message})
+      });
+
+      const data = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(data.error || "Chưa gửi được chia sẻ.");
+      }
+
+      const list = (currentContent?.shares || []).slice();
+      list.unshift(data.share);
+      currentContent = currentContent || {};
+      currentContent.shares = list;
+      renderShares(list);
+
+      shareMessage.value = "";
+      shareName.value = "";
+    } catch (error) {
+      alert(error.message || "Chưa gửi được chia sẻ lúc này.");
+    } finally {
+      shareSubmit.disabled = false;
+      shareSubmit.textContent = "Gửi chia sẻ";
+    }
+  });
+
+  // ---------- Quản trị nội dung ----------
+
+  const adminBackdrop = $("adminBackdrop");
+  const docsMsg = $("docsMsg");
+  const teamMsg = $("teamMsg");
+
+  function setMsg(element, text, ok) {
+    element.textContent = text || "";
+    element.className = `admin-msg ${ok ? "ok" : text ? "err" : ""}`;
+  }
+
+  async function adminRequest(payload) {
+    const response = await fetch("/.netlify/functions/admin", {
+      method:"POST",
+      headers:{"Content-Type":"application/json"},
+      body:JSON.stringify(payload)
+    });
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(data.error || "Yêu cầu thất bại.");
+    return data;
+  }
+
+  function fmtDate(value) {
+    return value
+      ? new Intl.DateTimeFormat("vi-VN", { day:"2-digit", month:"2-digit", year:"numeric" }).format(new Date(value))
+      : "";
+  }
+
+  function renderDocs(docs) {
+    const container = $("docList");
+    container.innerHTML = "";
+
+    if (!docs || docs.length === 0) {
+      const empty = document.createElement("small");
+      empty.textContent = "Chưa có tài liệu nào.";
+      container.appendChild(empty);
+      return;
+    }
+
+    docs.forEach((doc) => {
+      const row = document.createElement("div");
+      row.className = "admin-doc";
+
+      const info = document.createElement("div");
+      const title = document.createElement("b");
+      title.textContent = doc.title;
+      const date = document.createElement("small");
+      date.textContent = fmtDate(doc.createdAt);
+      info.append(title, date);
+
+      const del = document.createElement("button");
+      del.className = "del";
+      del.textContent = "Xóa";
+      del.addEventListener("click", async () => {
+        if (!confirm(`Xóa tài liệu "${doc.title}"?`)) return;
+        try {
+          await adminRequest({ action:"delete_doc", pass:$("docsPass").value, id:doc.id });
+          setMsg(docsMsg, "Đã xóa tài liệu.", true);
+          refreshDocs();
+        } catch (error) {
+          setMsg(docsMsg, error.message);
+        }
+      });
+
+      row.append(info, del);
+      container.appendChild(row);
+    });
+  }
+
+  async function refreshDocs() {
+    const data = await adminRequest({ action:"list_docs", pass:$("docsPass").value });
+    renderDocs(data.docs);
+  }
+
+  $("docsUnlock").addEventListener("click", async () => {
+    try {
+      setMsg(docsMsg, "");
+      await refreshDocs();
+      $("docsForm").hidden = false;
+      setMsg(docsMsg, "Đã mở khu tài liệu.", true);
+    } catch (error) {
+      setMsg(docsMsg, error.message);
+    }
+  });
+
+  $("docsPass").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") $("docsUnlock").click();
+  });
+
+  $("docAdd").addEventListener("click", async () => {
+    try {
+      const title = $("docTitle").value.trim();
+      const content = $("docContent").value.trim();
+
+      if (!title || !content) {
+        setMsg(docsMsg, "Cần nhập đủ tiêu đề và nội dung tài liệu.");
+        return;
+      }
+
+      await adminRequest({ action:"add_doc", pass:$("docsPass").value, title, content });
+      $("docTitle").value = "";
+      $("docContent").value = "";
+      setMsg(docsMsg, "Đã thêm tài liệu. AI sẽ dùng nội dung này khi trả lời.", true);
+      refreshDocs();
+    } catch (error) {
+      setMsg(docsMsg, error.message);
+    }
+  });
+
+  function fillTeamForm() {
+    const team = currentContent?.team || {};
+    const group = currentContent?.group || {};
+
+    $("fExpertName").value = team.title || "";
+    $("fExpertRole").value = team.role || "";
+    $("fExpertBody").value = team.body || "";
+    $("fGroupTitle").value = group.title || "";
+    $("fGroupDesc").value = group.desc || "";
+    $("fGroupItems").value = (group.items || []).join("\n");
+    $("fGroupNote").value = group.note || "";
+  }
+
+  $("teamUnlock").addEventListener("click", () => {
+    $("teamForm").hidden = false;
+    fillTeamForm();
+    setMsg(teamMsg, "Đã mở khu thông tin ban tư vấn.", true);
+  });
+
+  $("teamPass").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") $("teamUnlock").click();
+  });
+
+  $("teamSave").addEventListener("click", async () => {
+    try {
+      await adminRequest({
+        action:"save_team",
+        pass:$("teamPass").value,
+        team:{
+          title:$("fExpertName").value.trim(),
+          role:$("fExpertRole").value.trim(),
+          body:$("fExpertBody").value.trim()
+        },
+        group:{
+          title:$("fGroupTitle").value.trim(),
+          desc:$("fGroupDesc").value.trim(),
+          items:$("fGroupItems").value.split("\n").map((line) => line.trim()).filter(Boolean),
+          note:$("fGroupNote").value.trim()
+        }
+      });
+
+      setMsg(teamMsg, "Đã lưu. Trang sẽ cập nhật nội dung mới.", true);
+      loadContent();
+    } catch (error) {
+      setMsg(teamMsg, error.message);
+    }
+  });
+
+  const openAdmin = () => adminBackdrop.classList.add("show");
+  const closeAdmin = () => adminBackdrop.classList.remove("show");
+
+  $("adminTop").addEventListener("click", openAdmin);
+  $("adminClose").addEventListener("click", closeAdmin);
+
+  adminBackdrop.addEventListener("click", (event) => {
+    if (event.target === adminBackdrop) closeAdmin();
+  });
+
+  loadContent();
 
 })();
 </script>

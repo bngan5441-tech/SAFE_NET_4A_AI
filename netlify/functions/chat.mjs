@@ -68,6 +68,8 @@ Hãy nhớ: học sinh có thể là người bị ảnh hưởng, người ch�
 muốn sửa chữa hành vi của mình. Không mặc định mọi người kể chuyện đều là nạn nhân.
 `;
 
+import { loadKnowledge } from "./_knowledge.mjs";
+
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
     status,
@@ -120,17 +122,26 @@ export default async function handler(req) {
     }, 413);
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const baseUrl = (process.env.OPENAI_BASE_URL || process.env.NETLIFY_AI_GATEWAY_URL || "https://api.openai.com")
+    .replace(/\/+$/, "")
+    .replace(/\/v1$/, "");
+  const apiKey = process.env.OPENAI_API_KEY || process.env.NETLIFY_AI_GATEWAY_KEY;
+
   if (!apiKey) {
     return jsonResponse({
-      error: "Hệ thống chưa được giáo viên cấu hình API Key."
+      error: "Hệ thống AI chưa sẵn sàng. Bạn hãy thử lại sau ít phút."
     }, 503);
   }
 
   const model = process.env.OPENAI_MODEL || "gpt-4.1-mini";
 
   try {
-    const upstream = await fetch("https://api.openai.com/v1/responses", {
+    const knowledge = await loadKnowledge();
+    const instructions = knowledge
+      ? `${SYSTEM_INSTRUCTIONS}\n\nTÀI LIỆU THAM KHẢO DO TRƯỜNG CẬP NHẬT (ưu tiên dùng khi liên quan đến câu hỏi):\n${knowledge}`
+      : SYSTEM_INSTRUCTIONS;
+
+    const upstream = await fetch(`${baseUrl}/v1/responses`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +149,7 @@ export default async function handler(req) {
       },
       body: JSON.stringify({
         model,
-        instructions: SYSTEM_INSTRUCTIONS,
+        instructions,
         input: messages,
         store: false,
         max_output_tokens: 900
