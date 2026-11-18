@@ -11,6 +11,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+<!-- KaTeX: hiển thị công thức toán (LaTeX) trong tin nhắn của bot -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous" referrerpolicy="no-referrer">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <style>
 :root {
   --ink:#17343a;
@@ -339,6 +344,16 @@ h1 {
 }
 
 .assistant .bubble {border-bottom-left-radius:5px}
+
+.bubble .katex-display,
+.ai-msg .katex-display {
+  overflow-x:auto;
+  overflow-y:hidden;
+  padding:4px 0;
+}
+
+.bubble .katex,
+.ai-msg .katex {font-size:1.05em}
 
 .msg-time {
   font-size:9px;
@@ -1278,6 +1293,21 @@ Dự án nghiên cứu khoa học · SAFE NET 4A · THPT Mộ Đức
     }).format(new Date());
   }
 
+  function renderMath(el) {
+    if (!window.renderMathInElement) return;
+
+    window.renderMathInElement(el, {
+      delimiters:[
+        {left:"\\[", right:"\\]", display:true},
+        {left:"\\(", right:"\\)", display:false},
+        {left:"$$",  right:"$$",  display:true},
+        {left:"$",   right:"$",   display:false}
+      ],
+      throwOnError:false,
+      ignoredTags:["script","noscript","style","textarea","pre","code","option"]
+    });
+  }
+
   function addMessage(role, text) {
     $("welcome")?.remove();
 
@@ -1304,6 +1334,9 @@ Dự án nghiên cứu khoa học · SAFE NET 4A · THPT Mộ Đức
     wrap.append(bubble, time);
     row.appendChild(wrap);
     messagesEl.appendChild(row);
+
+    if (role !== "user") renderMath(bubble);
+
     messagesEl.scrollTop = messagesEl.scrollHeight;
 
     return row;
@@ -1508,6 +1541,9 @@ Bạn có thể thử gửi lại sau. Nếu đang có nguy cơ mất an toàn, 
     msg.className = `ai-msg ${role === "me" ? "me" : "bot"}`;
     msg.textContent = text;
     aiLog.appendChild(msg);
+
+    if (role !== "me") renderMath(msg);
+
     aiLog.scrollTop = aiLog.scrollHeight;
   }
 
