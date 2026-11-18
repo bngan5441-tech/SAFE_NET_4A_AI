@@ -785,6 +785,8 @@ h1 {
 
 .admin-doc-list {display:grid;gap:7px;margin-top:10px}
 
+.admin-share-list {margin-top:10px;max-height:320px;overflow-y:auto;padding-right:4px}
+
 .admin-doc {
   display:flex;
   align-items:center;
@@ -1120,9 +1122,9 @@ h1 {
     <span class="eyebrow">KHÔNG GIAN CHIA SẺ</span>
     <h2>Kể chuyện của bạn</h2>
     <p>
-      Chia sẻ câu chuyện, suy nghĩ hoặc góp ý cho dự án — những chia sẻ mới nhất
-      sẽ hiển thị bên dưới. Chỉ dùng bí danh, không nhập họ tên, lớp, số điện
-      thoại hay thông tin cá nhân. Nếu cần thầy cô hỗ trợ riêng, hãy dùng
+      Chia sẻ câu chuyện, suy nghĩ hoặc góp ý cho dự án — nội dung được lưu lại
+      để thầy cô ban tư vấn xem lại. Chỉ dùng bí danh, không nhập họ tên, lớp,
+      số điện thoại hay thông tin cá nhân. Nếu cần thầy cô hỗ trợ riêng, hãy dùng
       Trạm Lắng Nghe hoặc liên hệ ban tư vấn trực tiếp.
     </p>
   </div>
@@ -1270,6 +1272,31 @@ Dự án nghiên cứu khoa học · SAFE NET 4A · THPT Mộ Đức
       </div>
 
       <div class="admin-msg" id="teamMsg"></div>
+    </div>
+
+    <div class="admin-panel">
+      <h3>🗂 Chia sẻ của học sinh</h3>
+      <p>
+        Xem lại toàn bộ chia sẻ đã lưu trong hệ thống. Dùng nút tải file CSV
+        để lưu danh sách lên Google Drive của thầy cô (thư mục chia sẻ của dự án).
+      </p>
+
+      <div class="admin-unlock" id="sharesUnlockRow">
+        <input type="password" id="sharesPass" placeholder="Mật khẩu khu ban tư vấn" aria-label="Mật khẩu xem chia sẻ">
+        <button class="btn btn-soft" id="sharesUnlock">Mở</button>
+      </div>
+
+      <div id="sharesView" hidden>
+        <div class="admin-form">
+          <div class="admin-actions">
+            <button class="btn btn-primary" id="sharesRefresh">🔄 Làm mới</button>
+            <button class="btn btn-soft" id="sharesExport">⬇ Tải file CSV (lưu lên Drive)</button>
+          </div>
+        </div>
+        <div class="share-list admin-share-list" id="adminShareList"></div>
+      </div>
+
+      <div class="admin-msg" id="sharesMsg"></div>
     </div>
   </div>
 </div>
@@ -1882,6 +1909,101 @@ Bạn có thể thử lại, hoặc gặp trực tiếp thầy Nguyễn Hữu H�
     } catch (error) {
       setMsg(teamMsg, error.message);
     }
+  });
+
+  // ---------- Quản trị: chia sẻ của học sinh ----------
+
+  let adminShares = [];
+
+  function fmtShareTime(value) {
+    return value
+      ? new Intl.DateTimeFormat("vi-VN", { day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit" }).format(new Date(value))
+      : "";
+  }
+
+  function renderAdminShares(list) {
+    const container = $("adminShareList");
+    container.innerHTML = "";
+
+    if (!list || list.length === 0) {
+      const empty = document.createElement("small");
+      empty.textContent = "Chưa có chia sẻ nào.";
+      container.appendChild(empty);
+      return;
+    }
+
+    list.forEach((share) => {
+      const item = document.createElement("div");
+      item.className = "share-item";
+
+      const meta = document.createElement("div");
+      meta.className = "share-meta";
+      meta.textContent = `${share.name || "Ẩn danh"} · ${fmtShareTime(share.createdAt)}${share.hidden ? " · đã ẩn" : ""}`;
+
+      const text = document.createElement("div");
+      text.className = "share-text";
+      text.textContent = share.message;
+
+      item.append(meta, text);
+      container.appendChild(item);
+    });
+  }
+
+  async function refreshAdminShares() {
+    const data = await adminRequest({ action:"list_shares", pass:$("sharesPass").value });
+    adminShares = data.shares || [];
+    renderAdminShares(adminShares);
+  }
+
+  $("sharesUnlock").addEventListener("click", async () => {
+    try {
+      setMsg(sharesMsg, "");
+      await refreshAdminShares();
+      $("sharesView").hidden = false;
+      setMsg(sharesMsg, `Đã mở khu chia sẻ. Tổng cộng: ${adminShares.length} chia sẻ.`, true);
+    } catch (error) {
+      setMsg(sharesMsg, error.message);
+    }
+  });
+
+  $("sharesPass").addEventListener("keydown", (event) => {
+    if (event.key === "Enter") $("sharesUnlock").click();
+  });
+
+  $("sharesRefresh").addEventListener("click", async () => {
+    try {
+      await refreshAdminShares();
+      setMsg(sharesMsg, `Đã làm mới. Tổng cộng: ${adminShares.length} chia sẻ.`, true);
+    } catch (error) {
+      setMsg(sharesMsg, error.message);
+    }
+  });
+
+  $("sharesExport").addEventListener("click", () => {
+    if (adminShares.length === 0) {
+      setMsg(sharesMsg, "Chưa có chia sẻ nào để tải.");
+      return;
+    }
+
+    const escapeCsv = (value) => `"${String(value ?? "").replace(/"/g, '""')}"`;
+    const rows = [["Thời gian", "Bí danh", "Nội dung"]]
+      .concat(adminShares.map((share) => [
+        fmtShareTime(share.createdAt),
+        share.name || "Ẩn danh",
+        share.message
+      ]))
+      .map((row) => row.map(escapeCsv).join(","))
+      .join("\r\n");
+
+    const blob = new Blob(["\uFEFF" + rows], { type:"text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    const stamp = new Date().toISOString().slice(0, 10);
+    link.href = URL.createObjectURL(blob);
+    link.download = `chia-se-hoc-sinh-${stamp}.csv`;
+    link.click();
+    URL.revokeObjectURL(link.href);
+
+    setMsg(sharesMsg, "Đã tải file CSV. Thầy cô có thể tải file này lên Google Drive để lưu trữ.", true);
   });
 
   const openAdmin = () => adminBackdrop.classList.add("show");

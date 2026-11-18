@@ -12,10 +12,11 @@
  *  - { action: "add_doc", pass, title, content }
  *  - { action: "delete_doc", pass, id }
  *  - { action: "save_team", pass, team, group }
+ *  - { action: "list_shares", pass }          → toàn bộ chia sẻ của học sinh (khu ban tư vấn)
  */
 
 import { db } from "../../db/index.js";
-import { siteContent, docs } from "../../db/schema.js";
+import { siteContent, docs, shares } from "../../db/schema.js";
 import { desc, eq } from "drizzle-orm";
 
 const TEAM_KEY = "counseling_team";
@@ -114,6 +115,24 @@ export default async function handler(req) {
 
       await db.delete(docs).where(eq(docs.id, id));
       return jsonResponse({ ok: true });
+    }
+
+    if (action === "list_shares") {
+      if (!checkTeamPass(pass)) return jsonResponse({ error: "Mật khẩu không đúng." }, 401);
+
+      const rows = await db
+        .select({
+          id: shares.id,
+          name: shares.name,
+          message: shares.message,
+          hidden: shares.hidden,
+          createdAt: shares.createdAt
+        })
+        .from(shares)
+        .orderBy(desc(shares.createdAt))
+        .limit(500);
+
+      return jsonResponse({ shares: rows });
     }
 
     if (action === "save_team") {
